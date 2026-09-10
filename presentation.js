@@ -11,6 +11,7 @@
   const ui = display.ui = {
     get theme() { return theme; },
     get mobile() { return display.isMobile(); },
+    get pointScale() { return theme === 'light' ? 1.3 : 1; },
     get themeAction() { return theme==='dark'?'Switch to light mode':'Switch to dark mode'; },
     toggleTheme: () => ui.setTheme(theme==='dark'?'light':'dark'),
     bg(value) { return theme === 'light' ? surfaces[key(value)] || value : value; },
@@ -35,7 +36,7 @@
       if (theme !== 'light') return items;
       const map = value => Array.isArray(value) ? value.map(map) : value && typeof value === 'object'
         ? Object.fromEntries(Object.entries(value).map(([k,v])=>[k,map(v)])) : typeof value === 'string' && value.startsWith('#') ? ui.plot(value) : value;
-      return items.map(item=>({...item, color:map(item.color), ...(item.font ? {font:map(item.font)} : {})}));
+      return items.map(item=>({...item, color:map(item.color), ...(typeof item.size === 'number' ? {size:item.size*ui.pointScale} : {}), ...(item.font ? {font:map(item.font)} : {})}));
     },
     setTheme(next) {
       theme = next === 'light' ? 'light' : 'dark';
@@ -69,6 +70,12 @@
     if(theme!=='light')return ctx;
     if(!contexts.has(ctx))contexts.set(ctx,new Proxy(ctx,{
       get(target,prop){
+        if(prop==='arc')return (x,y,r,...args)=>target.arc(x,y,r*ui.pointScale,...args);
+        // The homepage also draws context points as tiny squares; keep their centres fixed.
+        if(prop==='fillRect')return (x,y,w,h)=>{
+          if(w===h&&w>0&&w<=4){const size=w*ui.pointScale;return target.fillRect(x+(w-size)/2,y+(h-size)/2,size,size);}
+          return target.fillRect(x,y,w,h);
+        };
         if(prop==='fillText')return (text,x,y,...args)=>{
           const badge={'#C0FE04':['#C0FE04','#0A0A0C'],'#8B5CFF':['#5100FD','#F4F4F5'],'#5100FD':['#5100FD','#F4F4F5'],'#FC2D76':['#FC2D76','#0A0A0C']}[key(target.fillStyle)];
           if(!badge)return target.fillText(text,x,y,...args);
