@@ -80,6 +80,9 @@ input::placeholder{color:var(--ui-fg-5c5c68,#5C5C68)}
         </button>
       </sc-for>
     </div>
+    <div style="padding:0 24px 20px;flex:none">
+      <button type="button" role="switch" aria-checked="{{ annotationsOn }}" onClick="{{ toggleAnnotations }}" style="display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;padding:9px 12px;border:0;cursor:pointer;font:inherit;font-size:12.5px;text-align:left;background:{{ ui.BG['#1B1B20'] }};color:{{ ui.FG['#1B1B20']['#F4F4F5'] }}" style-hover="background:var(--ui-bg-2a2a31,#2A2A31)"><span>Map annotations</span><span aria-hidden="true" style="width:26px;height:14px;background:{{ ui.BG[annotationTrack] }};position:relative;flex:none;transition:background 120ms ease-out"><span style="position:absolute;top:2px;left:{{ annotationKnob }};width:10px;height:10px;background:{{ ui.BG['#0A0A0C'] }};transition:left 120ms ease-out"></span></span></button>
+    </div>
     <div style="padding:16px 24px 20px;background:{{ ui.BG['#000'] }};font-size:12px;line-height:1.5;color:{{ ui.FG['#000']['#9A9AA6'] }};flex:none;margin-top:auto;text-wrap:pretty"><span style="color:{{ ui.FG['transparent']['#FFB020'] }};font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-right:8px">Overlay</span>Colours are metadata drawn on top of the layout afterwards. The model never saw any of them.</div>
   </aside>
 
@@ -167,7 +170,7 @@ input::placeholder{color:var(--ui-fg-5c5c68,#5C5C68)}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { d: null, field: 'class', iso: -1, projMode: false, projHover: -1, legendHover: -1, sel: -1, hover: -1, query: '', view: { k: 1, x: 0, y: 0 }, drag: null, hoverNb: -1 };
+  state = { d: null, showAnnotations: true, field: 'class', iso: -1, projMode: false, projHover: -1, legendHover: -1, sel: -1, hover: -1, query: '', view: { k: 1, x: 0, y: 0 }, drag: null, hoverNb: -1 };
   cv = React.createRef(); hdrRef = React.createRef();
   FIELDS = [['class', 'Tissue class'], ['tissue', 'Tissue'], ['disease', 'Disease'], ['instrument', 'Instrument'], ['acquisition', 'Acquisition'], ['labeling', 'Labelling'], ['pxd', 'Project']];
   PAL = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#42d4f4', '#f032e6', '#bfef45', '#fabed4', '#469990', '#dcbeff', '#9a6324', '#aaffc3', '#808000', '#ffd8b1', '#ff6fb5', '#1f9e89', '#4E9AF1', '#c354c3'];
@@ -266,7 +269,7 @@ class Component extends DCLogic {
     for (const k in byCol) { ctx.fillStyle = k; for (const i of byCol[k]) { ctx.beginPath(); ctx.arc(g.X(i), g.Y(i), r * 0.55, 0, 6.283); ctx.fill(); } }
     ctx.globalAlpha = 1;
     // class centroids as labels (only in class mode, no isolation)
-    if (this.state.field === 'class' && this.state.iso < 0 && !q) {
+    if (this.state.showAnnotations && this.state.field === 'class' && this.state.iso < 0 && !q) {
       ctx.font = `500 ${Math.max(8,14*ls)}px "JetBrains Mono", monospace`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       const placed = labels;
       for (const a of this.anchors('class', i => d.cls[i], () => true)) {
@@ -280,7 +283,7 @@ class Component extends DCLogic {
       }
     }
     // project labels (PXD) at each project's densest spot, in project mode
-    if (this.inProj()) {
+    if (this.state.showAnnotations && this.inProj()) {
       ctx.font = `500 ${Math.max(8,13*ls)}px "JetBrains Mono", monospace`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       const { iso, projHover } = this.state, field = this.state.field;
       const placed = labels;
@@ -353,6 +356,7 @@ class Component extends DCLogic {
     const clamp = () => this.setState({ view: { k: 1, x: 0, y: 0 } });
     const W = this.state.headerW || 1440, k = Math.max(0.6, Math.min(1, W / 1440));
     return {
+      annotationsOn: this.state.showAnnotations, annotationTrack: this.state.showAnnotations ? '#F4F4F5' : '#3A3A44', annotationKnob: this.state.showAnnotations ? '14px' : '2px', toggleAnnotations: () => this.setState({ showAnnotations: !this.state.showAnnotations }),
       hdrRef: this.hdrRef, ...window.OmicsFMDisplay.explorerHeaderLayout(W, 'Proteomics'), wide: W >= 1100,
       leftW: (this.state.leftWpx || Math.round(Math.max(240, 340 * k))) + 'px', rightW: (!(this.state.d && this.state.sel >= 0) && this.state.infoClosed ? 56 : Math.round(Math.max(240, 340 * k))) + 'px',
       query, hasQuery: !!query.trim(), queryHits: queryHits.toLocaleString(), onQuery: e => this.setState({ query: e.target.value, iso: e.target.value.trim() ? -1 : iso, projMode: e.target.value.trim() ? false : this.state.projMode }), clearQuery: () => this.setState({ query: '' }),
