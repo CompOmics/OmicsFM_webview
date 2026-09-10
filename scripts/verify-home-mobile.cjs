@@ -16,7 +16,7 @@ const base=process.env.OMICSFM_TEST_URL||'http://localhost:8000/';
    for(const theme of ['dark','light']){
     if(theme==='light')await page.getByRole('button',{name:'Switch to light mode',exact:true}).click();
     if(theme==='light'){
-     const expected=[['rgb(192, 254, 4)','rgb(10, 10, 12)'],['rgb(81, 0, 253)','rgb(244, 244, 245)'],['rgb(252, 45, 118)','rgb(10, 10, 12)']];
+     const expected=[['rgb(192, 254, 4)','rgb(10, 10, 12)'],['rgb(0, 0, 255)','rgb(244, 244, 245)'],['rgb(252, 45, 118)','rgb(10, 10, 12)']];
      for(let i=0;i<3;i++)assert.deepEqual(await toggles.nth(i).evaluate(el=>[getComputedStyle(el).backgroundColor,getComputedStyle(el).color]),expected[i]);
     }
     for(let i=0;i<3;i++){
@@ -36,8 +36,8 @@ const base=process.env.OMICSFM_TEST_URL||'http://localhost:8000/';
     assert.equal(await page.getByRole('link',{name:'Start exploring',exact:true}).isVisible(),false);
     for(let scene=0;scene<10;scene++){
      await page.evaluate(i=>{testHome.goScene(i);testHome.stopTimer();},scene);await page.waitForTimeout(100);
-     const colors=await page.evaluate(()=>{const c=(testHome.state.front?testHome.hB:testHome.hA).current,d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let lime=0,pink=0,purple=0;for(let i=0;i<d.length;i+=4){const [r,g,b,a]=d.slice(i,i+4);if(a<100)continue;if(r>180&&g>240&&b<30)lime++;if(r>240&&g<70&&b>90&&b<140)pink++;if([[139,92,255],[170,131,255],[81,0,253]].some(v=>Math.abs(r-v[0])<3&&Math.abs(g-v[1])<3&&Math.abs(b-v[2])<3))purple++;}return {lime,pink,purple,sc:testHome.SCENES[testHome.state.scene].mod};});
-     assert(colors[{proteomics:'lime',bulk:'purple',single_cell:'pink'}[colors.sc]]>10,`${width} ${theme} scene ${scene+1}: brand points ${JSON.stringify(colors)}`);
+     const colors=await page.evaluate(()=>{const c=(testHome.state.front?testHome.hB:testHome.hA).current,d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let lime=0,pink=0,blue=0;for(let i=0;i<d.length;i+=4){const [r,g,b,a]=d.slice(i,i+4);if(a<100)continue;if(r>180&&g>240&&b<30)lime++;if(r>240&&g<70&&b>90&&b<140)pink++;if(r<3&&g<3&&b>252)blue++;}return {lime,pink,blue,sc:testHome.SCENES[testHome.state.scene].mod};});
+     assert(colors[{proteomics:'lime',bulk:'blue',single_cell:'pink'}[colors.sc]]>10,`${width} ${theme} scene ${scene+1}: brand points ${JSON.stringify(colors)}`);
      const annotations=await page.evaluate(()=>({labels:testHome._heroLabels,points:testHome._heroFit.highlighted.map(p=>[testHome._heroFit.X(p),testHome._heroFit.Y(p)]),expected:testHome.SCENES[testHome.state.scene].family==='immunoglobulins'?2:1}));
      assert.equal(annotations.labels.length,annotations.expected,'Every carousel annotation is visible');
      for(const label of annotations.labels)assert(!annotations.points.some(p=>Math.abs(p[0]-label.x)<label.width/2+6&&Math.abs(p[1]-label.y)<label.height/2+6),'Labels clear highlighted dots');

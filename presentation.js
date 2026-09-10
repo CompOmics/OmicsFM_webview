@@ -4,7 +4,7 @@
   let theme = 'dark', component, chrome, menu, panel = 'map';
   try { theme = localStorage.getItem('omicsfm-theme') === 'light' ? 'light' : 'dark'; } catch (_) {}
   const surfaces = {'#000':'#E7E7ED','#000000':'#E7E7ED','#0A0A0C':'#FFFFFF','#131316':'#FFFFFF','#1B1B20':'#F5F5F8','#1F1F25':'#F0F0F4','#2A2A31':'#D2D2DB','#F4F4F5':'#22222B'};
-  const ink = {'#F4F4F5':'#18181F','#FFF':'#18181F','#FFFFFF':'#18181F','#E3E3E8':'#303039','#9A9AA6':'#555562','#5C5C68':'#676775','#C0FE04':'#C0FE04','#8B5CFF':'#8B5CFF','#BCA4FF':'#BCA4FF','#AA83FF':'#AA83FF','#FC2D76':'#FC2D76','#FFB020':'#FFB020'};
+  const ink = {'#F4F4F5':'#18181F','#FFF':'#18181F','#FFFFFF':'#18181F','#E3E3E8':'#303039','#9A9AA6':'#555562','#5C5C68':'#676775','#C0FE04':'#C0FE04','#0000FF':'#0000FF','#BCA4FF':'#BCA4FF','#AA83FF':'#AA83FF','#FC2D76':'#FC2D76','#FFB020':'#FFB020'};
   const context = {'#36363F':'#B8B8C4','#3A3A44':'#B8B8C4','#45454F':'#A9A9B7','#1F1F25':'#DDDDE5','#26262C':'#C8C8D2','#6C6C78':'#707080'};
   const key = value => typeof value === 'string' ? value.toUpperCase() : value;
   const neutral = value => value && (key(value) in surfaces || key(value) in context);
@@ -15,6 +15,7 @@
     toggleTheme: () => ui.setTheme(theme==='dark'?'light':'dark'),
     bg(value) { return theme === 'light' ? surfaces[key(value)] || value : value; },
     fg(value, background) {
+      if (key(background) === '#0000FF' && ['#0A0A0C','#000','#000000'].includes(key(value))) return '#F4F4F5';
       if (theme !== 'light') return value;
       if (key(background) === '#F4F4F5') return '#F4F4F5';
       if (background && !neutral(background) && background !== 'transparent') return value;
@@ -27,14 +28,15 @@
       return context[key(value)] || ink[key(value)] || surfaces[key(value)] || value;
     },
     logo(src) {
-      if (theme !== 'light' || !src) return src;
-      if (src.includes('-white.svg')) return src.replace('-white.svg','-black.svg');
-      return src.replace(/-(proteomics|bulk|single_cell)\.svg$/, '-$1-light.svg');
+      if (!src) return src;
+      if (theme === 'light') src = src.includes('-white.svg') ? src.replace('-white.svg','-black.svg') : src.replace(/-(proteomics|bulk|single_cell)\.svg$/, '-$1-light.svg');
+      return /-bulk(?:-light)?\.svg$/.test(src) ? src + '?v=0000ff' : src;
     },
     network(items) {
-      if (theme !== 'light') return items;
+      // Keep saved-layout drawing code stable; recolour its legacy accent at the display boundary.
+      const accent = value => ['#8B5CFF','#5100FD'].includes(key(value)) ? '#0000FF' : value;
       const map = value => Array.isArray(value) ? value.map(map) : value && typeof value === 'object'
-        ? Object.fromEntries(Object.entries(value).map(([k,v])=>[k,map(v)])) : typeof value === 'string' && value.startsWith('#') ? ui.plot(value) : value;
+        ? Object.fromEntries(Object.entries(value).map(([k,v])=>[k,map(v)])) : typeof value === 'string' && value.startsWith('#') ? ui.plot(accent(value)) : value;
       return items.map(item=>({...item, color:map(item.color), ...(item.font ? {font:map(item.font)} : {})}));
     },
     setTheme(next) {
@@ -70,7 +72,7 @@
     if(!contexts.has(ctx))contexts.set(ctx,new Proxy(ctx,{
       get(target,prop){
         if(prop==='fillText')return (text,x,y,...args)=>{
-          const badge={'#C0FE04':['#C0FE04','#0A0A0C'],'#8B5CFF':['#5100FD','#F4F4F5'],'#5100FD':['#5100FD','#F4F4F5'],'#FC2D76':['#FC2D76','#0A0A0C']}[key(target.fillStyle)];
+          const badge={'#C0FE04':['#C0FE04','#0A0A0C'],'#0000FF':['#0000FF','#F4F4F5'],'#FC2D76':['#FC2D76','#0A0A0C']}[key(target.fillStyle)];
           if(!badge)return target.fillText(text,x,y,...args);
           const previous=target.fillStyle,size=Number(target.font.match(/[\d.]+(?=px)/)?.[0])||12;
           const width=Math.min(target.measureText(text).width,args[0]||Infinity),align=target.textAlign;
@@ -93,8 +95,8 @@
       root.style.setProperty('--ui-bg-'+color.slice(1).toLowerCase(),ui.bg(color));
       root.style.setProperty('--ui-fg-'+color.slice(1).toLowerCase(),ui.fg(color));
     }
-    for (const background of [...Object.keys(surfaces),'#C0FE04','#5100FD','#8B5CFF','#FC2D76']) {
-      for (const color of ['#0A0A0C','#F4F4F5','#9A9AA6','#5C5C68','#C0FE04','#8B5CFF','#FC2D76']) {
+    for (const background of [...Object.keys(surfaces),'#C0FE04','#0000FF','#FC2D76']) {
+      for (const color of ['#0A0A0C','#F4F4F5','#9A9AA6','#5C5C68','#C0FE04','#0000FF','#FC2D76']) {
         root.style.setProperty('--ui-on-'+background.slice(1).toLowerCase()+'-'+color.slice(1).toLowerCase(),ui.fg(color,background));
       }
     }
