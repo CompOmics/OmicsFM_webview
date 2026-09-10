@@ -7,7 +7,7 @@
 <script src="./assets/vendor/react.production.min.js"></script>
 <script src="./assets/vendor/react-dom.production.min.js"></script>
 <script src="./site.js"></script>
-<script src="./assets/runtime/display.0b5801d29ed8.js"></script>
+<script src="./assets/runtime/display.ac6659d45bc1.js"></script>
 <script src="./support.js"></script>
 <link rel="icon" type="image/svg+xml" href="assets/brand/fold/favicon-stacked-white.svg">
 </head>
@@ -21,7 +21,7 @@ html,body{margin:0;padding:0;background:var(--ui-bg-0a0a0c,#0A0A0C);color:var(--
 a{color:var(--ui-fg-f4f4f5,#F4F4F5);text-decoration:none}a:hover{color:var(--ui-fg-c0fe04,#C0FE04)}
 *{box-sizing:border-box}
 input::placeholder{color:var(--ui-fg-5c5c68,#5C5C68)}
-@keyframes settle{0%{text-shadow:-5px 0 var(--ui-fg-0000ff,#0000FF),5px 0 var(--ui-fg-fc2d76,#FC2D76);opacity:.85}100%{text-shadow:0 0 transparent;opacity:1}}
+@keyframes settle{0%{text-shadow:-5px 0 var(--ui-fg-5100fd,#5100FD),5px 0 var(--ui-fg-fc2d76,#FC2D76);opacity:.85}100%{text-shadow:0 0 transparent;opacity:1}}
 @keyframes loadline{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
 @keyframes trisweep{0%{background-position:0% 0}100%{background-position:56.25% 0}}
 </style>
@@ -34,10 +34,10 @@ input::placeholder{color:var(--ui-fg-5c5c68,#5C5C68)}
   <div style="width:32px;flex:none"></div>
   <nav style="display:flex;align-items:center;gap:{{ navGap }};flex:none;font-family:'JetBrains Mono',monospace;font-size:{{ navFont }};font-weight:500;letter-spacing:.1em;text-transform:uppercase">
     <a href="Proteomics Samples.dc.html" style="display:inline-flex;align-items:center;padding:7px {{ navPad }};color:{{ ui.FG['transparent']['#F4F4F5'] }};white-space:nowrap;transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-c0fe04,#C0FE04);color:var(--ui-on-c0fe04-0a0a0c,#0A0A0C)">Proteomics</a>
-    <a href="Bulk Samples.dc.html" style="display:inline-flex;align-items:center;padding:7px {{ navPad }};color:{{ ui.FG['transparent']['#F4F4F5'] }};white-space:nowrap;transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-0000ff,#0000FF);color:var(--ui-on-0000ff-f4f4f5,#F4F4F5)">Bulk transcriptomics</a>
+    <a href="Bulk Samples.dc.html" style="display:inline-flex;align-items:center;padding:7px {{ navPad }};color:{{ ui.FG['transparent']['#F4F4F5'] }};white-space:nowrap;transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-5100fd,#5100FD);color:var(--ui-on-5100fd-f4f4f5,#F4F4F5)">Bulk transcriptomics</a>
     <a href="Single-cell Samples.dc.html" style="display:inline-flex;align-items:center;padding:7px {{ navPad }};color:{{ ui.FG['transparent']['#F4F4F5'] }};white-space:nowrap;transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-fc2d76,#FC2D76);color:var(--ui-on-fc2d76-0a0a0c,#0A0A0C)">Single-cell transcriptomics</a>
     
-    <a href="#what" style="display:inline-flex;align-items:center;padding:7px {{ navPad }};color:{{ ui.FG['transparent']['#F4F4F5'] }};white-space:nowrap;transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-f4f4f5,#F4F4F5);color:var(--ui-on-f4f4f5-0a0a0c,#0A0A0C)">About</a><a href="#compare" style="display:inline-flex;align-items:stretch;padding:0;color:{{ ui.FG['transparent']['#F4F4F5'] }};white-space:nowrap;background-size:900% 100%;background-position:0% 0" style-hover="background-image:linear-gradient(115deg,#C0FE04 0 16.66%,#0000FF 16.66% 33.33%,#FC2D76 33.33% 50%,#C0FE04 50% 66.66%,#0000FF 66.66% 83.33%,#FC2D76 83.33% 100%);animation:trisweep 5.4s linear infinite"><span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:7px {{ navPad }};background-size:900% 100%;background-position:0% 0;color:inherit" style-hover="background-image:linear-gradient(115deg,#0A0A0C 0 16.66%,#F4F4F5 16.66% 33.33%,#0A0A0C 33.33% 50%,#0A0A0C 50% 66.66%,#F4F4F5 66.66% 83.33%,#0A0A0C 83.33% 100%);-webkit-background-clip:text;background-clip:text;color:transparent;animation:trisweep 5.4s linear infinite">Compare</span></a>
+    <a href="#what" style="display:inline-flex;align-items:center;padding:7px {{ navPad }};color:{{ ui.FG['transparent']['#F4F4F5'] }};white-space:nowrap;transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-f4f4f5,#F4F4F5);color:var(--ui-on-f4f4f5-0a0a0c,#0A0A0C)">About</a><a href="#compare" style="display:inline-flex;align-items:stretch;padding:0;color:{{ ui.FG['transparent']['#F4F4F5'] }};white-space:nowrap;background-size:900% 100%;background-position:0% 0" style-hover="background-image:linear-gradient(115deg,#C0FE04 0 16.66%,#5100FD 16.66% 33.33%,#FC2D76 33.33% 50%,#C0FE04 50% 66.66%,#5100FD 66.66% 83.33%,#FC2D76 83.33% 100%);animation:trisweep 5.4s linear infinite"><span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:7px {{ navPad }};background-size:900% 100%;background-position:0% 0;color:inherit" style-hover="background-image:linear-gradient(115deg,#0A0A0C 0 16.66%,#F4F4F5 16.66% 33.33%,#0A0A0C 33.33% 50%,#0A0A0C 50% 66.66%,#F4F4F5 66.66% 83.33%,#0A0A0C 83.33% 100%);-webkit-background-clip:text;background-clip:text;color:transparent;animation:trisweep 5.4s linear infinite">Compare</span></a>
   </nav>
   <div style="flex:1 1 0;min-width:16px"></div>
   <div class="header-actions" style="display:flex;justify-content:flex-end;align-items:center;gap:12px;align-self:stretch;flex:none">
@@ -94,7 +94,7 @@ input::placeholder{color:var(--ui-fg-5c5c68,#5C5C68)}
 <!-- Modality bar -->
 <div data-screen-label="Modality bar" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;height:52px;font-family:'JetBrains Mono',monospace;font-size:{{ barFont }};letter-spacing:{{ barSpacing }};text-transform:uppercase;font-weight:500">
   <a href="#modalities" onClick="{{ revealModalities }}" style="display:flex;flex-direction:{{ barDirection }};align-items:{{ barAlign }};justify-content:{{ barJustify }};padding:0 {{ barPad }};background:{{ ui.BG[barBg_proteomics] }};color:{{ ui.FG[barBg_proteomics][barFg_proteomics] }};white-space:nowrap;overflow:hidden;gap:{{ barGap }};transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-c0fe04,#C0FE04);color:var(--ui-on-c0fe04-0a0a0c,#0A0A0C)"><span style="flex:none">Proteomics</span><span style="flex:none">48,837 profiles</span></a>
-  <a href="#modalities" onClick="{{ revealModalities }}" style="display:flex;flex-direction:{{ barDirection }};align-items:{{ barAlign }};justify-content:{{ barJustify }};padding:0 {{ barPad }};background:{{ ui.BG[barBg_bulk] }};color:{{ ui.FG[barBg_bulk][barFg_bulk] }};white-space:nowrap;overflow:hidden;gap:{{ barGap }};transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-0000ff,#0000FF);color:var(--ui-on-0000ff-f4f4f5,#F4F4F5)"><span style="flex:none">Bulk transcriptomics</span><span style="flex:none">680,216 profiles</span></a>
+  <a href="#modalities" onClick="{{ revealModalities }}" style="display:flex;flex-direction:{{ barDirection }};align-items:{{ barAlign }};justify-content:{{ barJustify }};padding:0 {{ barPad }};background:{{ ui.BG[barBg_bulk] }};color:{{ ui.FG[barBg_bulk][barFg_bulk] }};white-space:nowrap;overflow:hidden;gap:{{ barGap }};transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-5100fd,#5100FD);color:var(--ui-on-5100fd-f4f4f5,#F4F4F5)"><span style="flex:none">Bulk transcriptomics</span><span style="flex:none">680,216 profiles</span></a>
   <a href="#modalities" onClick="{{ revealModalities }}" style="display:flex;flex-direction:{{ barDirection }};align-items:{{ barAlign }};justify-content:{{ barJustify }};padding:0 {{ barPad }};background:{{ ui.BG[barBg_sc] }};color:{{ ui.FG[barBg_sc][barFg_sc] }};white-space:nowrap;overflow:hidden;gap:{{ barGap }};transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-fc2d76,#FC2D76);color:var(--ui-on-fc2d76-0a0a0c,#0A0A0C)"><span style="flex:none">Single-cell transcriptomics</span><span style="flex:none">4,550,106 cells</span></a>
 </div>
 <!-- Modality cards -->
@@ -111,9 +111,9 @@ input::placeholder{color:var(--ui-fg-5c5c68,#5C5C68)}
       </div>
     </div>
     <div id="modality-bulk" onMouseEnter="{{ hover_bulk }}" onMouseLeave="{{ hoverNone }}" style="display:flex;flex-direction:column;background:{{ ui.BG['#000'] }};color:{{ ui.FG['#000']['#F4F4F5'] }}" style-hover="color:var(--ui-fg-f4f4f5,#F4F4F5)">
-      <button type="button" class="mobile-modality-toggle" onClick="{{ toggle_bulk }}" aria-expanded="{{ open_bulk }}" aria-controls="modality-bulk-content" style="color:{{ ui.FG['transparent']['#0000FF'] }}"><span>Bulk transcriptomics</span><span class="modality-count">680,216 profiles</span></button>
+      <button type="button" class="mobile-modality-toggle" onClick="{{ toggle_bulk }}" aria-expanded="{{ open_bulk }}" aria-controls="modality-bulk-content" style="color:{{ ui.FG['transparent']['#8B5CFF'] }}"><span>Bulk transcriptomics</span><span class="modality-count">680,216 profiles</span></button>
       <div id="modality-bulk-content" class="modality-content" data-open="{{ open_bulk }}" role="region" aria-label="Bulk transcriptomics">
-      <div style="padding:4px 32px 0;display:flex;justify-content:space-between;gap:12px;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-size:11px;color:{{ ui.FG['transparent']['#0000FF'] }}"><span>ARCHS4 · 7,684 GEO series</span></div>
+      <div style="padding:4px 32px 0;display:flex;justify-content:space-between;gap:12px;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-size:11px;color:{{ ui.FG['transparent']['#8B5CFF'] }}"><span>ARCHS4 · 7,684 GEO series</span></div>
       <div style="padding:24px 32px 24px;display:flex;flex-direction:column;gap:18px;flex:1">
         <div style="display:flex;align-items:center;gap:16px">
           
@@ -121,7 +121,7 @@ input::placeholder{color:var(--ui-fg-5c5c68,#5C5C68)}
         </div>
         <p style="margin:0;font-size:16px;line-height:1.5;color:{{ ui.FG['transparent']['#9A9AA6'] }};text-wrap:pretty">ARCHS4 bulk RNA-seq profiles projected onto the shared protein vocabulary, so every gene can be compared to its protein.</p>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:12px;padding:0 32px 32px"><a href="Bulk Samples.dc.html" style="flex:1 1 136px;min-width:0;overflow:hidden;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:13px 14px;background:{{ ui.BG['#1B1B20'] }};color:{{ ui.FG['#1B1B20']['#F4F4F5'] }};font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-0000ff,#0000FF);color:var(--ui-on-0000ff-f4f4f5,#F4F4F5)"><span>Samples</span><span style="font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-size:10px;opacity:.7">SST</span></a><a href="Bulk Attention.dc.html" style="flex:1 1 136px;min-width:0;overflow:hidden;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:13px 14px;background:{{ ui.BG['#1B1B20'] }};color:{{ ui.FG['#1B1B20']['#F4F4F5'] }};font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-0000ff,#0000FF);color:var(--ui-on-0000ff-f4f4f5,#F4F4F5)"><span>Attention</span><span style="font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-size:10px;opacity:.7">NET</span></a><a href="Bulk Genes.dc.html" style="flex:1 1 136px;min-width:0;overflow:hidden;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:13px 14px;background:{{ ui.BG['#1B1B20'] }};color:{{ ui.FG['#1B1B20']['#F4F4F5'] }};font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-0000ff,#0000FF);color:var(--ui-on-0000ff-f4f4f5,#F4F4F5)"><span>Genes</span><span style="font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-size:10px;opacity:.7">ID</span></a></div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;padding:0 32px 32px"><a href="Bulk Samples.dc.html" style="flex:1 1 136px;min-width:0;overflow:hidden;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:13px 14px;background:{{ ui.BG['#1B1B20'] }};color:{{ ui.FG['#1B1B20']['#F4F4F5'] }};font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-5100fd,#5100FD);color:var(--ui-on-5100fd-f4f4f5,#F4F4F5)"><span>Samples</span><span style="font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-size:10px;opacity:.7">SST</span></a><a href="Bulk Attention.dc.html" style="flex:1 1 136px;min-width:0;overflow:hidden;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:13px 14px;background:{{ ui.BG['#1B1B20'] }};color:{{ ui.FG['#1B1B20']['#F4F4F5'] }};font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-5100fd,#5100FD);color:var(--ui-on-5100fd-f4f4f5,#F4F4F5)"><span>Attention</span><span style="font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-size:10px;opacity:.7">NET</span></a><a href="Bulk Genes.dc.html" style="flex:1 1 136px;min-width:0;overflow:hidden;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:13px 14px;background:{{ ui.BG['#1B1B20'] }};color:{{ ui.FG['#1B1B20']['#F4F4F5'] }};font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;transition:background 120ms ease-out,color 120ms ease-out" style-hover="background:var(--ui-bg-5100fd,#5100FD);color:var(--ui-on-5100fd-f4f4f5,#F4F4F5)"><span>Genes</span><span style="font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-size:10px;opacity:.7">ID</span></a></div>
       </div>
     </div>
     <div id="modality-single_cell" onMouseEnter="{{ hover_sc }}" onMouseLeave="{{ hoverNone }}" style="display:flex;flex-direction:column;background:{{ ui.BG['#000'] }};color:{{ ui.FG['#000']['#F4F4F5'] }}" style-hover="color:var(--ui-fg-f4f4f5,#F4F4F5)">
@@ -269,7 +269,7 @@ input::placeholder{color:var(--ui-fg-5c5c68,#5C5C68)}
     </div>
     <div style="position:relative;aspect-ratio:1/1;background:{{ ui.BG['#131316'] }};overflow:hidden">
       <canvas ref="{{ cBulk }}" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
-      <div style="position:absolute;top:14px;left:16px;right:16px;display:flex;justify-content:space-between;gap:12px;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-size:10px;color:{{ ui.FG['transparent']['#5C5C68'] }};pointer-events:none"><span style="color:{{ ui.FG['transparent']['#0000FF'] }};flex:none">Bulk transcriptomics</span><span style="text-align:right">{{ statBulk }}</span></div>
+      <div style="position:absolute;top:14px;left:16px;right:16px;display:flex;justify-content:space-between;gap:12px;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-size:10px;color:{{ ui.FG['transparent']['#5C5C68'] }};pointer-events:none"><span style="color:{{ ui.FG['transparent']['#8B5CFF'] }};flex:none">Bulk transcriptomics</span><span style="text-align:right">{{ statBulk }}</span></div>
       <div style="position:absolute;bottom:14px;left:16px;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-size:11px;color:{{ ui.FG['transparent']['#9A9AA6'] }};pointer-events:none;white-space:nowrap">UMAP 1 → · UMAP 2 ↑</div>
       <sc-if value="{{ showBrackets }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;top:6px;left:6px;width:10px;height:10px;border-top:1px solid {{ ui.FG['transparent']['#5C5C68'] }};border-left:1px solid {{ ui.FG['transparent']['#5C5C68'] }}"></span><span style="position:absolute;top:6px;right:6px;width:10px;height:10px;border-top:1px solid {{ ui.FG['transparent']['#5C5C68'] }};border-right:1px solid {{ ui.FG['transparent']['#5C5C68'] }}"></span><span style="position:absolute;bottom:6px;left:6px;width:10px;height:10px;border-bottom:1px solid {{ ui.FG['transparent']['#5C5C68'] }};border-left:1px solid {{ ui.FG['transparent']['#5C5C68'] }}"></span><span style="position:absolute;bottom:6px;right:6px;width:10px;height:10px;border-bottom:1px solid {{ ui.FG['transparent']['#5C5C68'] }};border-right:1px solid {{ ui.FG['transparent']['#5C5C68'] }}"></span></sc-if>
     </div>
@@ -294,7 +294,7 @@ input::placeholder{color:var(--ui-fg-5c5c68,#5C5C68)}
   <div style="display:flex;flex-direction:column;gap:10px;font-size:14px">
     <div style="font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;font-size:11px;color:{{ ui.FG['transparent']['#5C5C68'] }};margin-bottom:4px">Explore</div>
     <span style="color:{{ ui.FG['transparent']['#F4F4F5'] }}" style-hover="color:var(--ui-fg-c0fe04,#C0FE04)">Proteomics</span>
-    <span style="color:{{ ui.FG['transparent']['#F4F4F5'] }}" style-hover="color:var(--ui-fg-0000ff,#0000FF)">Bulk transcriptomics</span>
+    <span style="color:{{ ui.FG['transparent']['#F4F4F5'] }}" style-hover="color:var(--ui-fg-8b5cff,#8B5CFF)">Bulk transcriptomics</span>
     <span style="color:{{ ui.FG['transparent']['#F4F4F5'] }}" style-hover="color:var(--ui-fg-fc2d76,#FC2D76)">Single-cell transcriptomics</span>
     <a href="#compare" style="color:{{ ui.FG['transparent']['#F4F4F5'] }}" style-hover="color:var(--ui-fg-9a9aa6,#9A9AA6)">Compare</a>
   </div>
@@ -323,7 +323,7 @@ class Component extends DCLogic {
   hA = React.createRef(); hB = React.createRef(); hCard = React.createRef(); hdrRef = React.createRef();
   CHIPS = ['cytosolic ribosome', 'histones', 'keratins', 'proteasome', 'immunoglobulins', 'tubulins', 'OXPHOS complexes', 'collagens'];
   PAL = ['#4E9AF1','#F28E2B','#59A14F','#E15759','#76B7B2','#EDC948','#B07AA1','#AEC7E8','#9C755F','#BAB0AC','#1F77B4','#FFBB78','#2CA02C','#98DF8A','#D62728','#FF9896','#8C564B','#C49C94','#17BECF','#9EDAE5'];
-  MOD = { proteomics: '#C0FE04', bulk: '#0000FF', single_cell: '#FC2D76' };
+  MOD = { proteomics: '#C0FE04', bulk: '#8B5CFF', single_cell: '#FC2D76' };
   heroColor(mod) { return this.MOD[mod]; }
   MODNAME = { proteomics: 'Proteomics', bulk: 'Bulk transcriptomics', single_cell: 'Single-cell transcriptomics' };
   homeHeaderLayout(width) { return window.OmicsFMDisplay.homeHeaderLayout(width); }
@@ -519,10 +519,10 @@ class Component extends DCLogic {
       const {x,y}=position;
       // Draw one solid badge in light mode, without the theme adapter adding another layer.
       const light=window.OmicsFMDisplay.ui.theme==='light',ink=light?g.canvas.getContext('2d'):ctx;
-      const blue=label.color==='#0000FF';
-      ink.fillStyle=light?(blue?'#0000FF':label.color):'rgba(10,10,12,.94)';
+      const purple=label.color==='#8B5CFF'||label.color==='#5100FD';
+      ink.fillStyle=light?(purple?'#5100FD':label.color):'rgba(10,10,12,.94)';
       if(light||!mobile)ink.fillRect(x-width/2,y-height/2,width,height);
-      ink.fillStyle=light?(blue?'#F4F4F5':'#0A0A0C'):(label.textColor||label.color);
+      ink.fillStyle=light?(purple?'#F4F4F5':'#0A0A0C'):(label.textColor||label.color);
       lines.forEach((line,index)=>ink.fillText(line,x-width/2+8,y+(index-(lines.length-1)/2)*lineHeight));
       placed.push({text,x,y,width,height});
     }
@@ -587,7 +587,7 @@ class Component extends DCLogic {
     this.drawScene(this.state.front, this.state.scene);
     this.drawEgo(this.cEgo.current); this.drawSamples(this.cSamples.current); this.drawFamilies(this.cFamilies.current); this.drawAgree(this.cAgree.current);
     const fam = this.state.family;
-    this._n = { p: this.drawFamily(this.cProt.current, 'proteomics', fam, '#C0FE04'), b: this.drawFamily(this.cBulk.current, 'bulk', fam, '#0000FF'), s: this.drawFamily(this.cSc.current, 'single_cell', fam, '#FC2D76') };
+    this._n = { p: this.drawFamily(this.cProt.current, 'proteomics', fam, '#C0FE04'), b: this.drawFamily(this.cBulk.current, 'bulk', fam, '#8B5CFF'), s: this.drawFamily(this.cSc.current, 'single_cell', fam, '#FC2D76') };
     if (this._statKey !== fam + JSON.stringify(this._n)) { this._statKey = fam + JSON.stringify(this._n); this.forceUpdate(); }
   }
   sceneCount(sc) {
@@ -627,7 +627,7 @@ class Component extends DCLogic {
       tLeave: () => this.setState({ tHover: -1 }),
       hover_proteomics: () => this.setState({ hoverMod: 'proteomics' }), hover_bulk: () => this.setState({ hoverMod: 'bulk' }), hover_sc: () => this.setState({ hoverMod: 'sc' }), hoverNone: () => this.setState({ hoverMod: null }),
       barBg_proteomics: this.state.hoverMod === 'proteomics' ? '#C0FE04' : '#000', barFg_proteomics: this.state.hoverMod === 'proteomics' ? '#0A0A0C' : '#C0FE04',
-      barBg_bulk: this.state.hoverMod === 'bulk' ? '#0000FF' : '#000', barFg_bulk: this.state.hoverMod === 'bulk' ? '#F4F4F5' : '#0000FF',
+      barBg_bulk: this.state.hoverMod === 'bulk' ? '#5100FD' : '#000', barFg_bulk: this.state.hoverMod === 'bulk' ? '#F4F4F5' : '#8B5CFF',
       barBg_sc: this.state.hoverMod === 'sc' ? '#FC2D76' : '#000', barFg_sc: this.state.hoverMod === 'sc' ? '#0A0A0C' : '#FC2D76',
       // one responsive scale from the measured page width: 1 at >=1440px, down to ~0.6 at 900px
       ...(() => {
@@ -672,7 +672,7 @@ class Component extends DCLogic {
       ])),
       revealModalities: e => { e.preventDefault(); window.OmicsFMDisplay.scrollToEnd(document.getElementById('modalities')); },
       sceneReadout: readout, sceneModality: this.MODNAME[sc.mod], sceneReadoutRest: readout.slice(this.MODNAME[sc.mod].length),
-      sceneHasAxes: sc.kind !== 'network', sceneAxisX: 'UMAP 1', sceneAxisY: 'UMAP 2', sceneTitle: sc.title, sceneText: sc.text, sceneColor: col, sceneFg: col === '#0000FF' ? '#F4F4F5' : '#0A0A0C', sceneTag: tag, sceneUrl: sc.url, sceneLinkColor: col,
+      sceneHasAxes: sc.kind !== 'network', sceneAxisX: 'UMAP 1', sceneAxisY: 'UMAP 2', sceneTitle: sc.title, sceneText: sc.text, sceneColor: col === '#8B5CFF' ? '#5100FD' : col, sceneFg: col === '#8B5CFF' ? '#F4F4F5' : '#0A0A0C', sceneTag: tag, sceneUrl: sc.url, sceneLinkColor: col,
       sceneDots: this.SCENES.map((s, i) => ({ title: s.title, bg: i === si ? this.heroColor(sc.mod) : '#3A3A44', go: () => { this.goScene(i); this.startTimer(); } })),
       cEgo: this.cEgo, cSamples: this.cSamples, cFamilies: this.cFamilies, cAgree: this.cAgree, cProt: this.cProt, cBulk: this.cBulk, cSc: this.cSc,
       statProt: stat('p', tot.p || 11475), statBulk: stat('b', tot.b || 18403), statSc: stat('s', tot.s || 9794),
