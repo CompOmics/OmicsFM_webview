@@ -56,7 +56,7 @@
     // Transform presentation colours at the dataset boundary, leaving cached layout logic intact.
     for (const dataset of [c.nodesDS,c.edgesDS]) for (const name of ['add','update']) {
       const original=dataset[name].bind(dataset);
-      dataset[name]=items=>original(ui.network(items));
+      dataset[name]=items=>original(ui.network(dataset===c.nodesDS && c.state.showNodeNames===false ? items.map(item=>({...item,label:''})) : items));
     }
     c._applyNetworkTheme=()=>c.net.setOptions({nodes:{font:{color:ui.fg('#F4F4F5'),strokeColor:ui.bg('#0A0A0C')}}});
     c._applyNetworkTheme();

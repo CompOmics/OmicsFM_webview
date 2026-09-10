@@ -7,7 +7,7 @@
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
 <script src="assets/vendor/vis-network.min.js"></script>
-<script src="./assets/runtime/display.907ac01e43fb.js"></script>
+<script src="./assets/runtime/display.2760d5e49d9c.js"></script>
 <script src="./support.js"></script>
 <link rel="icon" type="image/svg+xml" href="assets/brand/fold/favicon-stacked-white.svg">
 </head>
@@ -129,6 +129,10 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;background:var(--ui-b
       </div>
     </sc-if>
 
+    <div style="padding:24px 24px 0;flex:none">
+      <button type="button" role="switch" aria-checked="{{ nodeNamesOn }}" onClick="{{ toggleNodeNames }}" style="display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;padding:9px 12px;border:0;cursor:pointer;font:inherit;font-size:12.5px;text-align:left;background:{{ ui.BG['#1B1B20'] }};color:{{ ui.FG['#1B1B20']['#F4F4F5'] }}" style-hover="background:var(--ui-bg-2a2a31,#2A2A31)"><span>Node names</span><span aria-hidden="true" style="width:26px;height:14px;background:{{ ui.BG[nodeNamesTrack] }};position:relative;flex:none;transition:background 120ms ease-out"><span style="position:absolute;top:2px;left:{{ nodeNamesKnob }};width:10px;height:10px;background:{{ ui.BG['#0A0A0C'] }};transition:left 120ms ease-out"></span></span></button>
+    </div>
+
     <div style="padding:24px 24px 8px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:{{ ui.FG['transparent']['#5C5C68'] }};flex:none"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ legendTitle }}</span><button onClick="{{ clearIso }}" style="border:0;background:transparent;color:{{ ui.FG['transparent'][isoColor] }};font:inherit;cursor:pointer;padding:0;flex:none">{{ isoLabel }}</button></div>
     <div class="mobile-legend" style="padding:0 16px 8px;display:flex;flex-direction:column;gap:1px;overflow-y:auto;overflow-x:hidden;min-height:160px;flex:1">
       <sc-for list="{{ legend }}" as="l" hint-placeholder-count="12">
@@ -244,7 +248,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;background:var(--ui-b
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { manifest: null, d: null, tissue: 'brain', view: 'network', edgeLimit: 1500, iso: -1, legendHover: -1, sel: -1, hover: -1, hoverP: -1, query: '', partners: null, vw: { k: 1, x: 0, y: 0 }, drag: null, infoClosed: false, loading: true, minComp: 10, selEdge: -1, physics: false, stabPct: 100 };
+  state = { showNodeNames: true, manifest: null, d: null, tissue: 'brain', view: 'network', edgeLimit: 1500, iso: -1, legendHover: -1, sel: -1, hover: -1, hoverP: -1, query: '', partners: null, vw: { k: 1, x: 0, y: 0 }, drag: null, infoClosed: false, loading: true, minComp: 10, selEdge: -1, physics: false, stabPct: 100 };
   cv = React.createRef(); hdrRef = React.createRef();
   PAL = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#42d4f4', '#f032e6', '#bfef45', '#fabed4', '#469990', '#dcbeff', '#9a6324', '#aaffc3', '#808000', '#ffd8b1', '#ff6fb5', '#1f9e89', '#4E9AF1', '#c354c3'];
   DBS = [['corum', 1], ['bioplex', 2], ['huri', 4], ['string', 8], ['reactome', 16], ['kegg', 32], ['gocc', 64], ['gobp', 128], ['omnipath', 256]];
@@ -400,6 +404,8 @@ class Component extends DCLogic {
     const unannotated = ps.filter(p => !this.isCurated(p[2]) && p[3]).length;
     const edges = d ? (view === 'clusters' ? d.clusterEdges : edgeLimit) : 0;
     return {
+      nodeNamesOn: this.state.showNodeNames, nodeNamesTrack: this.state.showNodeNames ? '#F4F4F5' : '#3A3A44', nodeNamesKnob: this.state.showNodeNames ? '14px' : '2px',
+      toggleNodeNames: () => { this._visual = null; this.setState({ showNodeNames: !this.state.showNodeNames }); },
       hdrRef: this.hdrRef, ...window.OmicsFMDisplay.explorerHeaderLayout(W, 'Bulk transcriptomics'), panelSearch: false, wide: W >= 1100,
       leftW: (this.state.leftWpx || Math.round(Math.max(240, 340 * k))) + 'px', rightW: (sel < 0 && this.state.selEdge < 0 && this.state.infoClosed ? 56 : Math.round(Math.max(240, 340 * k))) + 'px',
       startResize: e => { e.preventDefault(); this._rs = { x0: e.clientX, w0: this.state.leftWpx || Math.round(Math.max(240, 340 * k)) }; this.setState({ resizing: true }); }, handleColor: this.state.resizing ? '#8B5CFF' : '#2A2A31',
